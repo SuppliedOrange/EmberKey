@@ -113,6 +113,3 @@ Some MP3 files will fail to play. I believe this has something to do with the fi
 
 `Remapped key does not press:` <br>
 Now this has been on my radar for a while. The keyboard module recieves the function call and performs accordingly. However while accessing `_os_keyboard.press` (from the Key Controller) there seems to be a silent dll.call error. dll.call as far as I know is a winapi method to call a mouse function or key for the windows api. When I was debugging, the key suddenly started to work. I have come to conclusion that using `identifier keys` may be the problem. Remapping keys like shift,alt,enter etc can cause this. I would recommend remapping something simple like "p+z" to press "windows" or something to solve this issue temporarily. I'll have to see the Key Controller documentation for this.
-
-`About Page does not work:` <br>
-yes i know ill fix this in a few hours so stop complaining
