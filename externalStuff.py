@@ -175,6 +175,7 @@ def loadAllHotkeys():
         hotkeyData = loadData()['hotkeys']
     except Exception as e:
         print('[ERROR] Error hit while loading data from JSON file. Possibly blank.')
+        askClearJSON()
 
     print("[LOG] Attempting to load all hotkeys, this is the hotkey data:")
     print(hotkeyData)
