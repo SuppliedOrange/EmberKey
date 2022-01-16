@@ -4,9 +4,8 @@ import PySimpleGUI as sg
 import json
 import keyboard
 from PIL import Image, ImageTk, ImageSequence
-import random
 from externalStuff import legalhotkeys, loadedHotkeys, openAndCloseWindow, loadData, updateData, isValidHotkey, createReusableLayout, get_hotkeys, check_valid_hotkey,addHotkey, loadAllHotkeys, removeAllHotkeys, get_hotkeys_removal, removeHotkey
-
+import webbrowser
 
 '''
 with open("config.json", "r") as jsonFile:
@@ -17,6 +16,8 @@ with open("config.json", "w") as jsonFile:
 print("Flushed all hotkeys")
 '''
 loadAllHotkeys()
+linkToDocs = 'https://github.com/SuppliedOrange/PythonHotkeyAppThing'
+
 
 def debugWindow():
     logging_layout = [
@@ -352,7 +353,7 @@ def addHotKeyWindow():
 
 def make_window(theme):
     sg.theme(theme)
-    menu_def = [['&Help', ['&Adding Hotkey','&Removing Hotkey','&FAQ']],
+    menu_def = [['&Docs', ['&Open Docs','&Adding Hotkey','&Removing Hotkey']],
                 ['&About', ['&Credits','&Tools Used']] ]
     right_click_menu_def = [[], ['Edit Me','Exit']]
     defaultFont = loadData()['defaultFont']
@@ -418,6 +419,13 @@ def main():
         if event in (None, 'Exit'):
             print("[LOG] Clicked Exit!")
             break
+            
+        elif event == 'Open Docs':
+            webbrowser.open(linkToDocs + "#application-name")
+        elif event == 'Adding Hotkey':
+            webbrowser.open(linkToDocs + "#adding-hotkeys")
+        elif event == 'Removing Hotkey':
+            webbrowser.open(linkToDocs + "#removing-hotkeys")
 
         elif event == 'Credits':
             print("[LOG] User viewed credits.")
@@ -438,7 +446,8 @@ def main():
                      '|  json [Config Storage]',
                      '|  subprocess [Execution]',
                      '|  copy',
-                     '|  ntpath', keep_on_top=True)
+                     '|  ntpath',
+                     '|  webbrowser [Opening docs]', keep_on_top=True)
 
         elif event == "attemptAddHotkey":
             print("[LOG] User is trying to add a hotkey")
