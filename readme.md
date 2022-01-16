@@ -104,8 +104,7 @@ Set the values to send to the "hotkey" key (done by system)
 The values recieved from the "addProcessData" key
 
 ## Credits:
-All credits are in application's `About` menu.
-Made for a school assignment by `Dhruv`, `Johan` and `Bhumika` from Class 11 A. This project was made in pure Python. Maybe tell them about the godot thing too.  <br>
+Made for a school assignment by `Dhruv`, `Johan` and `Bhumika` from Class 11 A. This project was made in pure Python. Maybe tell them about the godot thing too.  *required rewrite <br>
 
 ## Known Issues:
 
