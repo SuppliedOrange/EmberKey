@@ -2,7 +2,6 @@
 #Functions that can be used in general python.
 #These functions are put here to avoid taking up space in the main file.
 
-from email.policy import default
 import json
 from minimize import minimize
 import keyboard
