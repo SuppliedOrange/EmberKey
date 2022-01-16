@@ -3,7 +3,6 @@
 import PySimpleGUI as sg
 import json
 import keyboard
-from PIL import Image, ImageTk, ImageSequence
 from externalStuff import legalhotkeys, loadedHotkeys, openAndCloseWindow, loadData, updateData, isValidHotkey, createReusableLayout, get_hotkeys, check_valid_hotkey,addHotkey, loadAllHotkeys, removeAllHotkeys, get_hotkeys_removal, removeHotkey
 import webbrowser
 
@@ -29,6 +28,8 @@ def debugWindow():
     window = sg.Window("Debugger",createReusableLayout(logging_layout), element_justification='c',keep_on_top=True)
     window.finalize()
 
+'''
+from PIL import Image, ImageTk, ImageSequence
 def successWindow():
 
     loadingWindowLayout =  [
@@ -76,6 +77,9 @@ def successWindow():
 
         if (toBreak):
             break
+
+        # I have retired this function. I have decided to abandon GIFs in order to focus on compatibility
+'''
 
 def removeHotKeyWindow():
     
@@ -442,7 +446,7 @@ def main():
             sg.popup('This app was built in 3 days using the following modules',
                      '|  PySimpleGUI [Main]',
                      '|  keyboard [Hotkeys]',
-                     '|  PIL [GIFs]',
+                 #   '|  PIL [GIFs]',   No more.
                      '|  json [Config Storage]',
                      '|  subprocess [Execution]',
                      '|  copy',
@@ -501,7 +505,8 @@ def main():
             print("Updated config file's theme to",themeMode['user'])
             window.close()
             window = make_window(themeMode['processor'])
-            successWindow()
+            #successWindow()
+            sg.Popup("Theme updated successfully!")
 
         elif event == 'Edit Me':
             sg.execute_editor(__file__)
