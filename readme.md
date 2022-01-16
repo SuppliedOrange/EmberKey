@@ -1,7 +1,7 @@
 # Application Name
 
 ## Writing the documentation
-I have marked places with *required rewrite for my team members to help me rewrite this documentation. Also, you may simple change any part of this documentation without asking if you feel it could be put in a better way.
+I have marked places with *required rewrite for my team members to help me rewrite this documentation. Also, you may simply change any part of this documentation without asking if you feel it could be put in a better way.
 <br> <br>
 Places marked with Application Name are to be replaced with the application name once decided.
 <br> <br>
