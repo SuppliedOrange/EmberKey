@@ -93,14 +93,8 @@ def get_hotkeys():
         return hotkey_string
     hotkey_string = ''
     for i in hotkeys:
-        verbs = {
-            'opens': "will open",
-            'plays' : 'will play sound',
-            'writes' : "will type out",
-            'remaps' : "will instead output"
-        }
         params = i[2] if not i[1] in ['opens','plays'] else ntpath.basename(f'{i[2]}')
-        hotkey_string += f'\n{hotkeys.index(i) + 1}: {i[0]} {verbs[i[1]]} {params}\n\n'
+        hotkey_string += f'\n{hotkeys.index(i) + 1}: {i[0]} {parseVerbs(i[1],"verb")} {params}\n\n'
     return hotkey_string
 
 def play_sound(sound_path):
@@ -129,15 +123,27 @@ def runMappedKey(key):
     except:
         print('[ERROR] Could not press key',key)
 
+def parseVerbs(verb,parsetype=None):
+    parsed_verbs = {}
+    if not parsetype: return
+    if parsetype == 'function':
+        parsed_verbs = {
+            'plays' : play_sound,
+            'writes' : keyboardWrite,
+            'opens' : open_file,
+            'remaps' : runMappedKey
+        }
+    elif parsetype == 'verb':
+        parsed_verbs = {
+            'opens': "will open",
+            'plays' : 'will play sound',
+            'writes' : "will type out",
+            'remaps' : "will instead output"
+        }
+    return parsed_verbs[verb]
+
 def addHotkey(hotkey,callback, hotkeyParams):
-    hotkeyfuncs = {
-        'plays' : play_sound,
-        'writes' : keyboardWrite,
-        'opens' : open_file,
-        'remaps' : runMappedKey
-    }
-    print(callback)
-    callback = hotkeyfuncs[callback]
+    callback = parseVerbs(callback,'function')
     newHotkey = keyboard.add_hotkey(hotkey,callback, args = ([hotkeyParams]))
     loadedHotkeys.append(newHotkey)
 
@@ -199,7 +205,8 @@ def askClearJSON():
             "hotkeys": [],
             "addProcessData": [],
             "defaultFont": "Bahnschrift",
-            "warnNoSound": False
+            "warnNoSound": False,
+            "useGIF": False
         }
         with open("config.json", "w") as jsonFile:
             json.dump(data, jsonFile)
