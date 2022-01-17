@@ -5,7 +5,7 @@ I have marked places with *required rewrite for my team members to help me rewri
 <br> <br>
 Places marked with Application Name are to be replaced with the application name once decided.
 <br> <br>
-I have marked places with *doThis for me (dhruv) to rewrite
+I have marked places with *doThis for me (doog) to rewrite
 
 Documentation starts now  <br>
 +-+-+-+-+-+-+-+-+-+-+-+-
