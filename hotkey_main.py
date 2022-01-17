@@ -467,7 +467,7 @@ def main():
         
         elif event == "reloadHotkeys": #not to be confused with event reload_hotkeys, this is used to restart all the current hotkeys
             print('[LOG] User reloaded all hotkeys')
-            removeAllHotkeys(force=False)
+            removeAllHotkeys()
             loadAllHotkeys()
             sg.popup_auto_close("All hotkeys were reloaded!")
 
@@ -475,7 +475,7 @@ def main():
             print('[LOG] User is trying to erase all hotkeys')
             confirmation = sg.popup_yes_no("Are you sure?")
             if confirmation == 'Yes':
-                removeAllHotkeys()
+                removeAllHotkeys(force=True)
                 sg.popup_auto_close("Removed all hotkeys.")
                 print('[LOG] User erased all hotkeys')
             else:
