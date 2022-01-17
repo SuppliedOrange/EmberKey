@@ -10,6 +10,10 @@ I have marked places with *doThis for me (doog) to rewrite
 Documentation starts now  <br>
 +-+-+-+-+-+-+-+-+-+-+-+-
 
+## Versions:
+**This app is only compatible with Python versions 3.6 to 3.9** <br>
+3.10 does not work as this app was built on Python 3.7.9, however you can still try.
+
 ## Installing the source code
 To install Application Name, first download the repository directly or by using <br>
     `git clone https://github.com/libgit2/libgit2`
@@ -24,7 +28,7 @@ You can also use `installer.bat` in the repository. It does the same thing.
 
 There are plenty of reasons this command may fail. This can be because you don't have python or pip in your PATH. Easy fix? open up `requirements.txt` and install all the modules manually using PyCharm or pip or whatever you like. Open an issue if you hit a problem.
 
-You should now be able to run the main file using `py/python/python3 hotkey_main.py`
+You should now be able to run the main file using ApplicationName.bat
 
 ## Installing the Executable
 Don't want to spend time figuring out how to build the app locally? Executables is the answer. Head to the Releases (Link this to releases *doThis) tab and grab a fresh .exe with no long, boring processes. Enjoy!
@@ -32,7 +36,6 @@ Don't want to spend time figuring out how to build the app locally? Executables 
 
 
 ## Introduction
-This application was tested on Python 3.7,9 <br>
 Application Name is a tool used to generate [hotkeys][1] that help with daily utility or simply for entertainment. *required rewrite
 
 [1]: <https://www.dictionary.com/browse/hotkey#:~:text=or%20hot%20key&text=an%20assigned%20key%20or%20sequence,Also%20called%20shortcut%2C%20keyboard%20shortcut%20.>  "hotkeys"
@@ -60,7 +63,13 @@ The settings tab consists of the following options: <br>
 
 `Erase All Hotkeys` -> This will erase all the hotkeys.
 
+`GIF pop-ups` -> Use GIFs in place of pop-ups as success messages wherever possible *doThis add more of these.
+
+`Check GIF compatibility` -> You'll have to check if your Python version supports PIL or pillow and use the module accordingly. If you fail the compatibility test please do not attempt to enable GIFs.
+
 `Show Console` -> Throughout the functioning of the app, multiple logs are printed. This button will open a debugger that shows everything that is printed to the console.
+
+
 
 ## Adding Hotkeys
 
@@ -69,6 +78,8 @@ Moving to the Hotkey Editor tab, you'll see option "Add hotkey".
 `Setting the hotkey:` You'll be prompted to enter a valid hotkey. A valid hotkey is all-lowercase and seperated by '+' if there is more than one character. Suppose you wanted your hotkey to trigger upon pressing Alt and 0. Your input would be "alt+0". 
 
 `Selecting the mode:` After finishing this step, you'll be prompted to select a hotkey mode. The hotkey mode is what should happen after the hotkey is pressed. There are 4 modes, one to execute a file, one to play a sound, one to type a sentence and lastly to press a specific key. Your next prompt will be different based on what is selected based on this window.
+
+### Modes:
 
 `Executing a file: ` If you wanted to execute a file, you would be prompted to select the file you would like to execute. After selecting, the path of this file is stored in the config.json file. If you changed this file's location, the hotkey would no longer work. You will have to remove the hotkey and add it again with the appropriate file path.
 
