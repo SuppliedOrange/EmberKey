@@ -28,15 +28,15 @@ def debugWindow():
     window = sg.Window("Debugger",createReusableLayout(logging_layout), element_justification='c',keep_on_top=True)
     window.finalize()
 
-'''
-from PIL import Image, ImageTk, ImageSequence
-def successWindow():
+def successWindow(loadSentences=None):
+    import random
+    from PIL import Image, ImageTk, ImageSequence
 
     loadingWindowLayout =  [
-    [sg.Image(key = 'mumei')],
-    [sg.Text("Done!",font = ('Bahnschrift',40), justification='c',key='loadingText',auto_size_text=True)]
+    [sg.Image(key = 'gif')],
+    [sg.Text("Done!",font = (loadData()['defaultFont'],40), justification='c',key='loadingText',auto_size_text=True)]
     ]
-    window = sg.Window("Success Message", loadingWindowLayout ,element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True)
+    window = sg.Window("Success Message",createReusableLayout( loadingWindowLayout ),element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True)
     window.make_modal()
 
     window['loadingText'].expand(True,True,True)
@@ -47,11 +47,11 @@ def successWindow():
 
     interframe_duration = Image.open(f'./assets/{gif}.gif').info['duration']
 
-    loadSentences = {
-    3: "Success ＼(^o^)／",
-    6: "Theme updated!",
-    9: "Python ftw :100:"
-    }
+    loadSentences = loadSentences or {
+                                        3: "Success ＼(^o^)／",
+                                        6: "Operation successful!!",
+                                        9: "Python ftw :100:"
+                                    }
 
     loadCounter = 0
 
@@ -64,7 +64,7 @@ def successWindow():
                 window.close()
                 toBreak = True
                 break
-            window['mumei'].update(data=ImageTk.PhotoImage(frame))
+            window['gif'].update(data=ImageTk.PhotoImage(frame))
 
         textUpdate = 'Success ＼(^o^)／'
 
@@ -77,9 +77,42 @@ def successWindow():
 
         if (toBreak):
             break
+        
 
-        # I have retired this function. I have decided to abandon GIFs in order to focus on compatibility
-'''
+def checkCanUseGIF():
+    def failureMessage(error):
+        print(error)
+        sg.popup("Unfortunately your Python does not support GIFs :(\nError:\n" + str(error))
+    try:
+        from PIL import Image, ImageTk, ImageSequence
+    except Exception as error:
+        return failureMessage(error)
+    gifWindowLayout =  [
+    [sg.Image(key = 'gif')],
+    [sg.Text("Your Python version supports GIFs!",font = ('Bahnschrift',40), justification='c',key='supportsMessage',auto_size_text=True)]
+    ]
+    try:
+        window = sg.Window("Success Message", createReusableLayout(gifWindowLayout) ,element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True)
+    except Exception as error:
+        return failureMessage(error)
+        
+    window['supportsMessage'].expand(True,True,True)
+    gif = 'yay'
+    
+    interframe_duration = Image.open(f'./assets/{gif}.gif').info['duration']
+    while(True):
+        toBreak = False
+        for frame in ImageSequence.Iterator(Image.open(f'./assets/{gif}.gif')):
+            event,values = window.read(timeout=interframe_duration)
+            if(event==sg.WIN_CLOSED):
+                window.close()
+                toBreak = True
+                break
+            window['gif'].update(data=ImageTk.PhotoImage(frame))
+
+        if (toBreak):
+            break
+    return "Success"
 
 def removeHotKeyWindow():
     
@@ -96,11 +129,12 @@ def removeHotKeyWindow():
         windowLayout.append([sg.T('')])
         windowLayout.append([sg.Button('Exit',key='exitHotkeyRemoval',size=(10,1))])
         reusableWindowLayout = createReusableLayout(windowLayout)
-        window = sg.Window("Removing Hotkeys", [[sg.Column(reusableWindowLayout,scrollable=True)]] , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True, resizable = True)
+        window = sg.Window("Removing Hotkeys", [[sg.Column(reusableWindowLayout,scrollable=True,key='columnHolder',size=(600,400))]] , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True, resizable = True,size=(600,400))
         window.make_modal()
         return window
     
     window = genWindow(genHotkeyRemovalLayout())
+    window['columnHolder'].expand(True,True,True)
 
     while True:
         event,values = window.read(100)
@@ -247,6 +281,21 @@ def addHotKeyWindow():
                         window['Finish'].update(disabled= False)
                         return
             askPopUp()
+            if (not loadData()['useGIF']):
+                sg.popup_auto_close("Hotkey added!",auto_close_duration=5)
+            else:
+                import ntpath # we're importing it here because it's a situational module and we don't want to import stuff and possibly sacrifice miliseconds of performance
+                filepath = ntpath.basename(process['givenParams'])
+                if len(filepath) > 7:
+                    filepath = filepath[0:5] + "..." + filepath[len(filepath) - 7: len(filepath)]
+                gifMessages = {
+                    0: "Hotkey'd " + process["givenHotkey"] + "!",
+                    3: "Executes file" + filepath,
+                    9: "Don't use it too many times!"
+                }
+                successWindow(gifMessages)
+
+
             
         elif (event == "chooseAudioFile"):
             print("[LOG] Trying to choose a sound file for new audio hotkey")
@@ -269,6 +318,19 @@ def addHotKeyWindow():
                         window['Finish'].update(disabled= False)
                         return
             askPopUp()
+            if (not loadData()['useGIF']):
+                sg.popup_auto_close("Hotkey Added!",auto_close_duration=5)
+            else:
+                import ntpath # same reason as above
+                filepath = ntpath.basename(process['givenParams'])
+                if len(filepath) > 7:
+                    filepath = filepath[0:5] + "..." + filepath[len(filepath) - 7: len(filepath)]
+                gifMessages = {
+                    0: "Hotkey'd " + process['givenHotkey'] + "!",
+                    3:  "Trigger audio " + filepath + " with ease",
+                    9: "Try it out!"
+                }
+                successWindow(gifMessages)
         
         elif (event == "writtenMessage"):
             writtenMessage = values['writesInput']
@@ -276,7 +338,15 @@ def addHotKeyWindow():
             currdata = loadData()["addProcessData"]
             currdata.append(process["givenParams"])            
             updateData("addProcessData",currdata)
-            sg.popup_auto_close("Hotkey added!\nClick on finish to quit to main app.",auto_close_duration=5)
+            if (not loadData()['useGIF']):
+                sg.popup_auto_close("Hotkey added!\nClick on finish to quit to main app.",auto_close_duration=5)
+            else:
+                gifMessages = {
+                    0: "Hotkey'd " + process["givenHotkey"],
+                    3: process["givenParams"],
+                    9: "Try it out on a text box!"
+                }
+                successWindow(gifMessages)
 
         elif (event == 'remappedKeys'):
             keys = [values['keyboardRemapKey1'],values['keyboardRemapKey2']]
@@ -284,7 +354,15 @@ def addHotKeyWindow():
             currdata = loadData()['addProcessData']
             currdata.append(process["givenParams"])
             updateData("addProcessData",currdata)
-            sg.popup_auto_close(f"Hotkey Added!\nYour {keys[0]} key will now behave as {keys[1]}")
+            if (not loadData()['useGIF']):
+                sg.popup_auto_close(f"Hotkey Added!\nYour {keys[0]} key will now behave as {keys[1]}")
+            else:
+                gifMessages = {
+                    0: "Remapped " + keys[0] + "!",
+                    3:  keys[0] + " = " + keys[1],
+                    9: "Try pressing " + keys[0]
+                }
+                successWindow(gifMessages)
 
 
         #the first window process has already started
@@ -388,6 +466,11 @@ def make_window(theme):
                     [sg.Text("Hotkey Options")],
                     [sg.Button('Reload All Hotkeys',key="reloadHotkeys"),sg.Button('Erase All Hotkeys',key='eraseHotkeys')],
                     [sg.T('')],
+                    [sg.Text("Use GIFs Options")],
+                    [sg.Checkbox('Use GIFs instead of pop-ups where possible',default=loadData()['useGIF'],key='use_gifs_checkbox')],
+                    [sg.Button('Update GIF settings',key="use_gifs_button")],
+                    [sg.Button('Check compatibility',key='check_gif_compatibility_button')],
+                    [sg.T('')],
                     [sg.Button('Show Console',key="showConsole")]
                     ]
     
@@ -462,7 +545,6 @@ def main():
             print("[LOG] User is trying to remove a hotkey")
             removeHotKeyWindow()
 
-
         elif event == "reload_hotkeys":
             window['hotkeylist'].update(get_hotkeys())
         
@@ -487,10 +569,31 @@ def main():
             debugWindow()
             window.close()
             window = make_window(loadData()['theme'])
+
         elif event == "Update Warning":
             choice = values['warnNoSoundCheckBox']
             print('[LOG] User updated sound warnings to',choice)
             updateData('warnNoSound',choice)
+
+        elif event == "use_gifs_button":
+            choice = values['use_gifs_checkbox']
+            if (choice):
+                wantsToCheckComp = sg.popup_yes_no("It is recommended that you check if your python version supports the GIF module before enabling this option.\nDo you want to run a compatibility test?")
+                if wantsToCheckComp == "Yes":
+                    canUseGifs = checkCanUseGIF()
+                    if canUseGifs == "Success":
+                        updateData('useGIF',True)
+                        print('[LOG] User activated GIF settings after checking compatibility')
+                else:
+                    updateData('useGIF',True)
+                    print('[LOG] User activated GIF settings without checking compatibility')
+            else:
+                updateData('useGIF',False)
+                print('[LOG] User deactivated GIF feature.')
+
+        elif event == 'check_gif_compatibility_button':
+            print("[LOG] User checked GIF compatibility")
+            checkCanUseGIF()
 
         elif event == "Update Theme":
             themeMode = {
@@ -506,11 +609,19 @@ def main():
             print("Updated config file's theme to",themeMode['user'])
             window.close()
             window = make_window(themeMode['processor'])
-            #successWindow()
-            sg.Popup("Theme updated successfully!")
+            if (loadData()["useGIF"]):
+                loadSentences = {
+                    3: "Success ＼(^o^)／",
+                    6: "Theme updated!",
+                    9: "Python ftw :100:"
+                    }
+                successWindow(loadSentences)
+            else:
+                sg.Popup("Theme updated successfully!")
 
         elif event == 'Edit Me':
             sg.execute_editor(__file__)
+
         elif event == 'Versions':
             sg.popup(sg.get_versions(), keep_on_top=True)
 
