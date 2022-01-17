@@ -448,7 +448,8 @@ def main():
                      '|  keyboard [Hotkeys]',
                  #   '|  PIL [GIFs]',   No more.
                      '|  json [Config Storage]',
-                     '|  os [Execution & Path modifier]',
+                     '|  os [Execution]',
+                     '|  playsound@1.2.2 [Playing audio]',
                      '|  copy',
                      '|  ntpath',
                      '|  webbrowser [Opening docs]', keep_on_top=True)
