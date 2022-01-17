@@ -1,1 +1,1 @@
-{"theme": "reddit", "hotkeys": [["shift+control", "remaps", "windows+shift+s"], ["alt+1", "remaps", "windows"], ["alt+period", "plays", "C:/Users/black/Downloads/yeah.mp3"]], "addProcessData": ["alt+j", "remaps", ["alt+j", "windows+shift+s"]], "defaultFont": "Bahnschrift", "warnNoSound": true}
+{"theme": "reddit", "hotkeys": [], "addProcessData": [], "defaultFont": "Bahnschrift", "warnNoSound": false}
