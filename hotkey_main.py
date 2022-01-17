@@ -448,7 +448,7 @@ def main():
                      '|  keyboard [Hotkeys]',
                  #   '|  PIL [GIFs]',   No more.
                      '|  json [Config Storage]',
-                     '|  subprocess [Execution]',
+                     '|  os [Execution & Path modifier]',
                      '|  copy',
                      '|  ntpath',
                      '|  webbrowser [Opening docs]', keep_on_top=True)
