@@ -24,7 +24,7 @@ You can also use `installer.bat` in the repository. It does the same thing.
 
 There are plenty of reasons this command may fail. This can be because you don't have python or pip in your PATH. Easy fix? open up `requirements.txt` and install all the modules manually using PyCharm or pip or whatever you like. Open an issue if you hit a problem.
 
-You should now be able to run the main file using ApplicationName.bat
+You should now be able to run the main file using `py/python/python3 hotkey_main.py`
 
 ## Installing the Executable
 Don't want to spend time figuring out how to build the app locally? Executables is the answer. Head to the Releases (Link this to releases *doThis) tab and grab a fresh .exe with no long, boring processes. Enjoy!
