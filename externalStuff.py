@@ -138,7 +138,7 @@ def addHotkey(hotkey,callback, hotkeyParams):
     }
     print(callback)
     callback = hotkeyfuncs[callback]
-    newHotkey = keyboard.add_hotkey(hotkey,callback, args = (hotkeyParams))
+    newHotkey = keyboard.add_hotkey(hotkey,callback, args = ([hotkeyParams]))
     loadedHotkeys.append(newHotkey)
 
 def removeHotkey(hotkeySecret,force=False):
