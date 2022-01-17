@@ -1,6 +1,6 @@
 )> Installers:
 
-    In ./installers-automatic you should find batch files that will automatically install the requirements.txt file for you.
+    In ./installers you should find batch files that will automatically install the requirements.txt file for you.
     However, I don't know how many versions of python you have on your system or what their syntax is, so try them all until one of them work.
     installer1, installer2, installer3 respectively use python, python3 and py as their extensions.
     P.S Some installations will fail. That's okay, it depends on your Python version.
