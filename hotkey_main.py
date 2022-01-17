@@ -212,7 +212,7 @@ def addHotKeyWindow():
         ],
         "plays" : [
             [sg.Text("What audio would you like to play?",font=(defaultFont,40))],
-            [sg.Text("Unfortunately, only .mp3 files are supported.",font=(defaultFont,15))],
+            [sg.Text(".mp3 files are supported for audio files",font=(defaultFont,15))],
             [sg.Button("Choose File",key='chooseAudioFile')],
             [sg.Button("Finish",disabled=True,key='Finish')]
         ],
