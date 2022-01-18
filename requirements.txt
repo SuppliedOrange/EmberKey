@@ -2,3 +2,5 @@ PySimpleGUI
 keyboard
 playsound==1.2.2
 python3-tk
+PIL
+pillow
