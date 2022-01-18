@@ -91,7 +91,7 @@ Moving to the Hotkey Editor tab, you'll see option "Add hotkey".
 
 ## Removing Hotkeys
 
-Not built at time of writing
+In the Hotkey Editor tab you'll see button "Remove Hotkey". Upon pressing the button you'll be greeted with a window that shows all active hotkeys. Under each hotkey is a button "Remove Hotkey". Clicking on this button removes the hotkey above it. Hotkeys also have IDs assigned to them, they're basically the index number of the hotkey from the config.json file.
 
 ## Config JSON File
 Please don't try to change the JSON unless you know what you're doing. You may trigger an infinite loop of PySimpleGUI errors that can only be dismissed by ending the process through task manager.
