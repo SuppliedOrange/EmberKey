@@ -71,14 +71,8 @@ def get_hotkeys_removal(): #get hotkeys for removal
     hotkey_models = []
     id = 0
     for i in hotkeys:
-        verbs = {
-            'opens': "will open",
-            'plays' : 'will play sound',
-            'writes' : "will type out",
-            'remaps' : "will instead output"
-        }
         params = i[2] if not i[1] in ['opens','plays'] else ntpath.basename(f'{i[2]}')
-        hotkey_string = f'\n{i[0]} {verbs[i[1]]} {params}\n\n'
+        hotkey_string = f'\n{i[0]} {parseVerbs(i[1],"verb")} {params}\n\n'
         hotkey_ID = 'Hotkey ID: ' + str(id) + '\n'
         hotkey_models.append([sg.T('')])
         hotkey_models.append([sg.Text(hotkey_ID + hotkey_string,font=(defaultFont,15))])
