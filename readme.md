@@ -51,7 +51,7 @@ Use command <br>
 `python/py/python3 -m pip install -r requirements.txt` <br>
 You can also use `installer.bat` in the repository. It does the same thing.
 
-There are plenty of reasons this command may fail. This can be because you don't have python or pip in your PATH. You simply need to install all the modules in `requirements.txt` and you can do it in anyway you like.
+There are plenty of reasons this command may fail. This can be because you don't have python or pip in your PATH. You simply need to install all the modules in `requirements.txt` (except python3-tk unless you're on linux) and you can do it in anyway you like.
 
 <br>
 
