@@ -14,8 +14,6 @@ hotkeyIcon = 'emberkeyLogo.ico'
 def debugWindow():
     logging_layout = [
         [sg.Text("Everything we log will appear here")],
-        #[sg.Multiline(size=(60,15), font='Courier 8', expand_x=True, expand_y=True, write_only=True,
-        #reroute_stdout=True, reroute_stderr=True, echo_stdout_stderr=True, autoscroll=True, auto_refresh=True,key='debuggerConsole')],
         [sg.Output(size=(60,15), font='Courier 8', expand_x=True, expand_y=True,key="debuggerConsole")]
     ]
     window = sg.Window("Debugger",createReusableLayout(logging_layout), element_justification='c',keep_on_top=True,icon=hotkeyIcon)
@@ -33,9 +31,6 @@ def successWindow(loadSentences=None):
     window.make_modal()
 
     window['loadingText'].expand(True,True,True)
-
-    #gif = ['yay','walk','fingerspin']
-    #gif = random.choice(gif)  #Let's not use these.. I need to show this app to my parents too.
     gif = 'yay'
 
     interframe_duration = Image.open(f'./assets/{gif}.gif').info['duration']
@@ -188,7 +183,6 @@ def addHotKeyWindow():
         "opens" : [
             [sg.Text("What file would you like to open?",font=(defaultFont,40))],
             [sg.Button("Choose File",key='chooseFile')],
-            #[sg.Button("Finish",disabled=True,key='Finish')]
         ],
         "writes" : [
             [sg.Text("What do we write?",font=(defaultFont,40))],
@@ -207,7 +201,6 @@ def addHotKeyWindow():
             [sg.Text("What audio would you like to play?",font=(defaultFont,40))],
             [sg.Text(".mp3 files are supported for audio files",font=(defaultFont,15))],
             [sg.Button("Choose File",key='chooseAudioFile')],
-            #[sg.Button("Finish",disabled=True,key='Finish')]
         ],
 
     }
@@ -271,7 +264,6 @@ def addHotKeyWindow():
                         currdata = loadData()['addProcessData']
                         currdata.append(process['givenParams'])
                         updateData("addProcessData",currdata)
-                        #window['Finish'].update(disabled= False)
                         return
             askPopUp()
             if (not loadData()['useGIF']):
@@ -308,7 +300,6 @@ def addHotKeyWindow():
                         currdata = loadData()['addProcessData']
                         currdata.append(process['givenParams'])
                         updateData("addProcessData",currdata)
-                        #window['Finish'].update(disabled= False)
                         return
             askPopUp()
             if (not loadData()['useGIF']):
@@ -468,7 +459,6 @@ def make_window(theme):
                     ]
     
     layout = [ [sg.MenubarCustom(menu_def, key='-MENU-', font = defaultFont, tearoff=True, background_color='#18222d', text_color='white' )]]
-                #[sg.Text('Demo Of (Almost) All Elements', size=(38, 1), justification='center', font=("Helvetica", 16), relief=sg.RELIEF_RIDGE, k='-TEXT HEADING-', enable_events=True)]]
                 
     menuOptions = [
             sg.Tab('My hotkeys', my_hotkeys_layout),
@@ -478,9 +468,7 @@ def make_window(theme):
     
     layout +=[[sg.TabGroup([menuOptions], key='-TAB GROUP-', expand_x=True, expand_y=True)]]
     layout[-1].append(sg.Sizegrip())
-    window = sg.Window('EmberKey', createReusableLayout(layout), right_click_menu=right_click_menu_def, right_click_menu_tearoff=True, grab_anywhere=True, resizable=True, margins=(0,0), finalize=True, icon = hotkeyIcon
-                       #scaling=2.0,
-                       )
+    window = sg.Window('EmberKey', createReusableLayout(layout), right_click_menu=right_click_menu_def, right_click_menu_tearoff=True, grab_anywhere=True, resizable=True, margins=(0,0), finalize=True, icon = hotkeyIcon)
     window.set_min_size(window.size)
     return window
 
@@ -522,7 +510,7 @@ def main():
             sg.popup('This app was built in 3 days using the following modules',
                      '|  PySimpleGUI [Main]',
                      '|  keyboard [Hotkeys]',
-                 #   '|  PIL [GIFs]',   No more.
+                     '|  pillow [GIFs]',
                      '|  json [Config Storage]',
                      '|  os [Execution]',
                      '|  playsound@1.2.2 [Playing audio]',
