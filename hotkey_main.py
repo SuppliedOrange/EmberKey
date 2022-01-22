@@ -447,7 +447,7 @@ def make_window(theme):
                 [sg.Text('Your Hotkeys',font=(defaultFont,40))],
                 [sg.Multiline(get_hotkeys(),size=(9,9), font=(defaultFont,11), expand_x=True, expand_y=True, write_only=True,disabled=True,key='hotkeylist')],
                 [sg.Button("Reload Hotkeys",key='reload_hotkeys')],
-                [sg.Text('\nWelcome to [Name of App]!',font=(defaultFont,20))],
+                [sg.Text('\nWelcome to EmberKey!',font=(defaultFont,20))],
                 [sg.Text('Add your own hotkeys to play sound, execute a file, type something or just remap a key!')]
                 ]
 
@@ -509,7 +509,7 @@ def main():
             break
             
         elif event == 'Open Docs':
-            webbrowser.open(linkToDocs + "#application-name")
+            webbrowser.open(linkToDocs + "#emberkey")
         elif event == 'Adding Hotkey':
             webbrowser.open(linkToDocs + "#adding-hotkeys")
         elif event == 'Removing Hotkey':
@@ -517,7 +517,7 @@ def main():
 
         elif event == 'Credits':
             print("[LOG] User viewed credits.")
-            sg.popup('[App Name]',
+            sg.popup('EmberKey',
                      'This app was built for a Computer Science project.',
                      'Class 11 A',
                      'Members of the team are:',
