@@ -4,4 +4,4 @@ we use audiofailure.mp3 for telling the user that their audio file path is inval
 
 we use addHotKeyAnim.gif and removeHotKeyAnim.gif in the hotkey editor page.
 
-we use the images ending with "Image.png" for the readme.md
+we use the AddToPathImage.png, AddressBarImage.png, CheckPythonVersion.png for the readme.md
