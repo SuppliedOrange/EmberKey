@@ -16,6 +16,7 @@ print("Flushed all hotkeys")
 '''
 loadAllHotkeys()
 linkToDocs = 'https://github.com/SuppliedOrange/PythonHotkeyAppThing'
+hotkeyIcon = 'emberkeyLogo.ico'
 
 
 def debugWindow():
@@ -25,7 +26,7 @@ def debugWindow():
         #reroute_stdout=True, reroute_stderr=True, echo_stdout_stderr=True, autoscroll=True, auto_refresh=True,key='debuggerConsole')],
         [sg.Output(size=(60,15), font='Courier 8', expand_x=True, expand_y=True,key="debuggerConsole")]
     ]
-    window = sg.Window("Debugger",createReusableLayout(logging_layout), element_justification='c',keep_on_top=True)
+    window = sg.Window("Debugger",createReusableLayout(logging_layout), element_justification='c',keep_on_top=True,icon=hotkeyIcon)
     window.finalize()
 
 def successWindow(loadSentences=None):
@@ -36,7 +37,7 @@ def successWindow(loadSentences=None):
     [sg.Image(key = 'gif')],
     [sg.Text("Done!",font = (loadData()['defaultFont'],40), justification='c',key='loadingText',auto_size_text=True)]
     ]
-    window = sg.Window("Success Message",createReusableLayout( loadingWindowLayout ),element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True)
+    window = sg.Window("Success Message",createReusableLayout( loadingWindowLayout ),element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True,icon=hotkeyIcon)
     window.make_modal()
 
     window['loadingText'].expand(True,True,True)
@@ -92,7 +93,7 @@ def checkCanUseGIF():
     [sg.Text("Your Python version supports GIFs!",font = ('Bahnschrift',40), justification='c',key='supportsMessage',auto_size_text=True)]
     ]
     try:
-        window = sg.Window("Success Message", createReusableLayout(gifWindowLayout) ,element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True)
+        window = sg.Window("Success Message", createReusableLayout(gifWindowLayout) ,element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True,icon=hotkeyIcon)
     except Exception as error:
         return failureMessage(error)
         
@@ -129,7 +130,7 @@ def removeHotKeyWindow():
         windowLayout.append([sg.T('')])
         windowLayout.append([sg.Button('Exit',key='exitHotkeyRemoval',size=(10,1))])
         reusableWindowLayout = createReusableLayout(windowLayout)
-        window = sg.Window("Removing Hotkeys", [[sg.Column(reusableWindowLayout,scrollable=True,key='columnHolder',size=(600,400))]] , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True, resizable = True,size=(600,400))
+        window = sg.Window("Removing Hotkeys", [[sg.Column(reusableWindowLayout,scrollable=True,key='columnHolder',size=(600,400))]] , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True, resizable = True,size=(600,400),icon=hotkeyIcon)
         window.make_modal()
         return window
     
@@ -222,7 +223,7 @@ def addHotKeyWindow():
 
     def addProcessWindow(windowName,windowLayout):
         reusableWindowLayout = createReusableLayout(windowLayout)
-        window = sg.Window(windowName, reusableWindowLayout , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True)
+        window = sg.Window(windowName, reusableWindowLayout , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True,icon=hotkeyIcon)
         window.make_modal()
         return window
     
@@ -485,7 +486,7 @@ def make_window(theme):
     
     layout +=[[sg.TabGroup([menuOptions], key='-TAB GROUP-', expand_x=True, expand_y=True)]]
     layout[-1].append(sg.Sizegrip())
-    window = sg.Window('Python Hotkey App', createReusableLayout(layout), right_click_menu=right_click_menu_def, right_click_menu_tearoff=True, grab_anywhere=True, resizable=True, margins=(0,0), finalize=True,
+    window = sg.Window('EmberKey', createReusableLayout(layout), right_click_menu=right_click_menu_def, right_click_menu_tearoff=True, grab_anywhere=True, resizable=True, margins=(0,0), finalize=True, icon = hotkeyIcon
                        #scaling=2.0,
                        )
     window.set_min_size(window.size)
