@@ -98,7 +98,7 @@ def play_sound(sound_path):
     except Exception as e:
         print("[ERROR] Could not find the audio file",raw_sound_path,"\nYou may have moved/deleted this file. If that's not the problem, re-add this hotkey\nError: ",e)
         if (loadData()['warnNoSound']):
-            playsound('./assets/incorrectsound.mp3')
+            playsound('./assets/audiofailure.mp3')
 
 def keyboardWrite(textToWrite='ApplicationName'):
     keyboard.write(textToWrite)
