@@ -1,46 +1,68 @@
-# Application Name
-
-## Writing the documentation
+# EmberKey
+# Writing the documentation
 I have marked places with *required rewrite for my team members to help me rewrite this documentation. Also, you may simply change any part of this documentation without asking if you feel it could be put in a better way.
-<br> <br>
-Places marked with Application Name are to be replaced with the application name once decided.
 <br> <br>
 I have marked places with *doThis for me (doog) to rewrite
 
-Documentation starts now  <br>
-+-+-+-+-+-+-+-+-+-+-+-+-
+Documentation starts now  <br> <br>
 
-## Versions:
+# Versions:
 **This app is only compatible with Python versions 3.6 to 3.9** <br>
-3.10 does not work as this app was built on Python 3.7.9, however you can still try.
 
-## Installing the source code
-To install Application Name, first download the repository directly or by using <br>
-    `git clone https://github.com/libgit2/libgit2`
+If you don't have python 3.6 - 3.9, You can download the most reliable release [Python 3.7.9](https://www.python.org/downloads/release/python-379/) or the latest release [Python 3.9.10](https://www.python.org/downloads/release/python-3910/).
 
-Then open up a terminal in the repository (You can type "cmd" in the address bar) and install the required modules through `requirements.txt`. 
+<br>
+I have downloaded Python 3.7.9 as an example here, you can download anything else just replace `python3.7` with just `python` or `python3.9` etc
+
+<br>
+
+## Downloading Python 3.7.9 <br>
+• Firstly, download the [executable installer](https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe). Run it and enable the `Add to path` option before installing <br>
+![Enabling path option At the bottom of the screen](/assets/AddToPathImage.png)
+
+• After installing it, open up the project folder and open up command prompt in that directory by typing "cmd" in the address bar. Try typing `python3.7 -V` to see if the version number matches with *3.7.9*.
+![Typing "cmd" in address bar](/assets/AddressBarImage.png)
+![Typing "python3.7 -V" in the cmd prompt](/assets/CheckPythonVersion.png)
+
+• You should use the `tutorialInstaller.bat` in Batch Files folder to install files. If you still keep running into errors don't worry, there's a fix. You need to manually input these lines:
+```
+python3.7 -m pip install PySimpleGUI
+python3.7 -m pip install keyboard
+python3.7 -m pip install playsound
+python3.7 -m pip install pillow
+```
+
+Done! You have successfully installed Python 3.7.9 and initialized the repo. Give yourself a pat on the back.
+
+To run the program, simply type: <br>
+ `python3.7 hotkey_main.py`
+
+<br>
+
+# Installing the source code
+If you followed the tutorial above, skip this step.
+
+To install EmberKey, first download the repository directly through the green button that says "Code" on the repository or by using <br>
+    `git clone https://github.com/SuppliedOrange/EmberKey`
+
+Then open up a terminal in the repository (You can type "cmd" in the address bar) and install the required modules through `requirements.txt`.
 
 Use command <br> 
-`python/py -m pip install -r requirements.txt` <br>
-OR <br>
-`python3 -m pip install -r requirements.txt` <br>
+`python/py/python3 -m pip install -r requirements.txt` <br>
 You can also use `installer.bat` in the repository. It does the same thing.
 
-There are plenty of reasons this command may fail. This can be because you don't have python or pip in your PATH. Easy fix? open up `requirements.txt` and install all the modules manually using PyCharm or pip or whatever you like. Open an issue if you hit a problem.
+There are plenty of reasons this command may fail. This can be because you don't have python or pip in your PATH. You simply need to install all the modules in `requirements.txt` and you can do it in anyway you like.
 
-You should now be able to run the main file using ApplicationName.bat
+<br>
 
-## Installing the Executable
-Don't want to spend time figuring out how to build the app locally? Executables is the answer. Head to the Releases (Link this to releases *doThis) tab and grab a fresh .exe with no long, boring processes. Enjoy!
-
-
-
-## Introduction
-Application Name is a tool used to generate [hotkeys][1] that help with daily utility or simply for entertainment. *required rewrite
+# Introduction
+EmberKey is a tool used to generate [hotkeys][1] that help with daily utility or simply for entertainment. *required rewrite
 
 [1]: <https://www.dictionary.com/browse/hotkey#:~:text=or%20hot%20key&text=an%20assigned%20key%20or%20sequence,Also%20called%20shortcut%2C%20keyboard%20shortcut%20.>  "hotkeys"
 
-## This guide contains:
+<br>
+
+# This guide contains:
 [Main Menu](#main-menu)
 
 [Settings](#settings)
@@ -114,10 +136,14 @@ Set the values to send to the "hotkey" key (done by system)
 <b>"hotkeys"</b> -> `[ ["hotkey","hotkey type","hotkey params"], ... ]` <br>
 The values recieved from the "addProcessData" key
 
-## Credits:
+<br>
+
+# Credits:
 Made for a school assignment by `Dhruv`, `Johan` and `Bhumika` from Class 11 A. This project was made in pure Python. Maybe tell them about the godot thing too.  *required rewrite <br>
 
-## Known Issues:
+<br>
+
+# Known Issues:
 
 `Sound Failure:`<br>
 Some MP3 files will fail to play. I believe this has something to do with the file name. Try renaming your file to something simple like "aVeryCoolAudioFile.mp3".
