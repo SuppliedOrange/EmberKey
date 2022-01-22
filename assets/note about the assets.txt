@@ -1,9 +1,0 @@
-we use yay.gif for playing the success message after updating theme
-
-we use incorrectsound.mp3 for telling the user that their audio file path is invalid.
-
-we use addHotKeyAnim.gif and removeHotKeyAnim.gif in the hotkey editor page.
-
-walk.gif and fingerspin.gif were two of the gifs that i used alongside yay.giif originally. we can (maybe?) include those too through a setting, we'll randomly play one.
-
-also, if we do switch to this project from the game, we need custom sprites and custom icons. the custom icon is priority.

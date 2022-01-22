@@ -1,0 +1,7 @@
+we use yay.gif for playing the success message after updating theme
+
+we use audiofailure.mp3 for telling the user that their audio file path is invalid.
+
+we use addHotKeyAnim.gif and removeHotKeyAnim.gif in the hotkey editor page.
+
+we use the images ending with "Image.png" for the readme.md
