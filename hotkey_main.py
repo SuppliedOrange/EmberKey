@@ -6,14 +6,6 @@ import keyboard
 from externalStuff import legalhotkeys, loadedHotkeys, openAndCloseWindow, loadData, updateData, isValidHotkey, createReusableLayout, get_hotkeys, check_valid_hotkey,addHotkey, loadAllHotkeys, removeAllHotkeys, get_hotkeys_removal, removeHotkey
 import webbrowser
 
-'''
-with open("config.json", "r") as jsonFile:
-    data = json.load(jsonFile)
-with open("config.json", "w") as jsonFile:
-    data['hotkeys'] = []
-    json.dump(data, jsonFile)
-print("Flushed all hotkeys")
-'''
 loadAllHotkeys()
 linkToDocs = 'https://github.com/SuppliedOrange/PythonHotkeyAppThing'
 hotkeyIcon = 'emberkeyLogo.ico'
@@ -196,7 +188,7 @@ def addHotKeyWindow():
         "opens" : [
             [sg.Text("What file would you like to open?",font=(defaultFont,40))],
             [sg.Button("Choose File",key='chooseFile')],
-            [sg.Button("Finish",disabled=True,key='Finish')]
+            #[sg.Button("Finish",disabled=True,key='Finish')]
         ],
         "writes" : [
             [sg.Text("What do we write?",font=(defaultFont,40))],
@@ -215,7 +207,7 @@ def addHotKeyWindow():
             [sg.Text("What audio would you like to play?",font=(defaultFont,40))],
             [sg.Text(".mp3 files are supported for audio files",font=(defaultFont,15))],
             [sg.Button("Choose File",key='chooseAudioFile')],
-            [sg.Button("Finish",disabled=True,key='Finish')]
+            #[sg.Button("Finish",disabled=True,key='Finish')]
         ],
 
     }
@@ -279,7 +271,7 @@ def addHotKeyWindow():
                         currdata = loadData()['addProcessData']
                         currdata.append(process['givenParams'])
                         updateData("addProcessData",currdata)
-                        window['Finish'].update(disabled= False)
+                        #window['Finish'].update(disabled= False)
                         return
             askPopUp()
             if (not loadData()['useGIF']):
@@ -316,7 +308,7 @@ def addHotKeyWindow():
                         currdata = loadData()['addProcessData']
                         currdata.append(process['givenParams'])
                         updateData("addProcessData",currdata)
-                        window['Finish'].update(disabled= False)
+                        #window['Finish'].update(disabled= False)
                         return
             askPopUp()
             if (not loadData()['useGIF']):
@@ -340,7 +332,7 @@ def addHotKeyWindow():
             currdata.append(process["givenParams"])            
             updateData("addProcessData",currdata)
             if (not loadData()['useGIF']):
-                sg.popup_auto_close("Hotkey added!\nClick on finish to quit to main app.",auto_close_duration=5)
+                sg.popup_auto_close("Hotkey added!",auto_close_duration=5)
             else:
                 gifMessages = {
                     0: "Hotkey'd " + process["givenHotkey"],
