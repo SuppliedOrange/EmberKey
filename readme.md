@@ -79,7 +79,7 @@ The main menu consists of the current hotkeys, as the ones specified in the conf
 The settings tab consists of the following options: <br>
 `GUI Accent` -> This allows you to change the theme of the app. There are two themes, Dark and Light mode.
 
-`No-Sound Warning` -> When you set a hotkey to play a sound, it looks for the file path for the audio you provided. If the file were to be moved into a new directory, renamed or deleted then this operation would fail and no sound would be played. If you enable this setting then whenever the sound fails to play, you'll hear a TTS voice that tells you "The .mp3 file location provided was incorrect".
+`No-Sound Warning` -> When you set a hotkey to play a sound, it looks for the file path for the audio you provided. If the file were to be moved into a new directory, renamed or deleted then this operation would fail and no sound would be played. If you enable this setting then whenever the sound fails to play, you'll hear "Audio Failure".
 
 `Reload All Hotkeys` -> This will stop all active hotkeys and start them again.
 
