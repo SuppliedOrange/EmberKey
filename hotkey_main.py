@@ -66,6 +66,23 @@ def successWindow(loadSentences=None):
         if (toBreak):
             break
         
+def addedHotkeyMessage (msg="Added Hotkey!"): # success window with no gif
+    loadingWindowLayout =  [
+    [sg.Image("./assets/successCatto.png")],
+    [sg.Text(msg,font = (loadData()['defaultFont'],40), justification='c',key='loadingText',auto_size_text=True)]
+    ]
+    window = sg.Window("Success Message",createReusableLayout( loadingWindowLayout ),element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True,icon=hotkeyIcon)
+    window.make_modal()
+
+    window['loadingText'].expand(True,True,True)
+
+    while True:
+            
+        event, values = window.read(timeout=100)
+
+        if event in (sg.TIMEOUT_EVENT, sg.WIN_CLOSED,None):
+            print("[LOG] Clicked Exit!")
+            break
 
 def checkCanUseGIF():
     def failureMessage(error):
@@ -77,7 +94,7 @@ def checkCanUseGIF():
         return failureMessage(error)
     gifWindowLayout =  [
     [sg.Image(key = 'gif')],
-    [sg.Text("Your Python version supports GIFs!",font = ('Bahnschrift',40), justification='c',key='supportsMessage',auto_size_text=True)]
+    [sg.Text("Your Python version supports GIFs!",font = (loadData()['defaultFont'],40), justification='c',key='supportsMessage',auto_size_text=True)]
     ]
     try:
         window = sg.Window("Success Message", createReusableLayout(gifWindowLayout) ,element_justification='c', margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=True,modal=True,icon=hotkeyIcon)
@@ -162,7 +179,7 @@ def addHotKeyWindow():
     ]
     addHotKeyWindowLayout = [
         [sg.Text('Enter a Hotkey',font=(defaultFont,40))],
-        [sg.Input(key='hotkeyInput')],
+        [sg.Input(key='hotkeyInput',focus=True)],
         [sg.Text('Invalid Key',font=(defaultFont,18),key='validator',text_color='')],
         [sg.Text('Examples:',font=(defaultFont,20))],
         [sg.Text('"shift+ctrl+a" -> Press shift, control and A \n"alt+1" -> Press alt and 1\n"enter" -> Press Enter key',font=(defaultFont,11))],
@@ -171,9 +188,8 @@ def addHotKeyWindow():
      ]
     selectHotKeyTypeWindowLayout = [
         [sg.Text('I want the Hotkey to...',font=(defaultFont,40))],
-        [sg.Radio('Open a file', "hotKeyType", default=True, size=(15,1), k='openFile'), sg.Radio('Type something', "hotKeyType", default=False, size=(10,1), k='keyboardWrite')],
-        [sg.Radio('Remap a key', "hotKeyType", default=False, size=(15,1), k='keyboardRemap'), sg.Radio('Play a sound', "hotKeyType", default=False, size=(10,1), k='playSound')],
-        [sg.Button("Next",key="complete2")],
+        [sg.Button(image_filename='./assets/cattoOpen.png',image_subsample=2,k='openFile'),sg.Button(image_filename='./assets/cattoType.png',image_subsample=2,k='keyboardWrite')],
+        [sg.Button(image_filename='./assets/cattoRemap.png',image_subsample=2,k='keyboardRemap'),sg.Button(image_filename='./assets/cattoPlay.png',image_subsample=2,k='playSound')],
         [sg.Text("Current hotkey: Unknown",key='currHotkeyMessage')]
     ]
 
@@ -182,33 +198,39 @@ def addHotKeyWindow():
     parameterLayouts = {
         "opens" : [
             [sg.Text("What file would you like to open?",font=(defaultFont,40))],
-            [sg.Button("Choose File",key='chooseFile')],
+            [sg.Button("Choose File",key='chooseFile',size=(30,2),focus=True)],
         ],
         "writes" : [
             [sg.Text("What do we write?",font=(defaultFont,40))],
-            [sg.Text("By \"writing\", we pass on the letters to your keyboard in quick succession in order. \nSo 'Hello there' would press H,e,l,l,o,space,t.. etc",font=("Bahnschrift",10))],
-            [sg.Input("I love typescript!",font=("Bahnschrift",20),key='writesInput')],
-            [sg.Button("Done",key="writtenMessage")]
+            [sg.Text("By \"writing\", we pass on the letters to your keyboard in quick succession in order. \nSo 'Hello there' would press H,e,l,l,o,space,t.. etc",font=(loadData()["defaultFont"],10))],
+            [sg.Input("I love typescript!",font=("Bahnschrift",20),key='writesInput',focus=True)],
+            [sg.Button("Done",key="writtenMessage",size=(30,2))]
         ],
         "remaps" : [
             [sg.Text("What key are we remapping?",font=(defaultFont,40))],
             [sg.Input(firstKey,key="keyboardRemapKey1"),sg.Text(" should press "),sg.Input("g",key="keyboardRemapKey2")],
             [sg.Text("Remapping key 'f6' to 'g'",font=(defaultFont,11),key="keyboardRemapValidator")],
-            [sg.Text("\nExamples:\n'f1' to 'backspace'\n'shift+up' to 'windows+shift+s' (screenshot)\n'alt+a' to 'ă' (unconventional letter)\n")],
+            [sg.Text("\nExamples:\n'f1' to 'backspace'\n'up+delete' to 'windows+shift+s' (screenshot)\n'alt+a' to 'ă' (unconventional letter)\n")],
             [sg.Button("Show all keys",key='showAllKeys'),sg.Button("Finish",key="remappedKeys")]
         ],
         "plays" : [
             [sg.Text("What audio would you like to play?",font=(defaultFont,40))],
             [sg.Text(".mp3 files are supported for audio files",font=(defaultFont,15))],
-            [sg.Button("Choose File",key='chooseAudioFile')],
+            [sg.Button("Choose File",key='chooseAudioFile',size=(30,2),focus=True)],
         ],
 
     }
     
 
-    def addProcessWindow(windowName,windowLayout):
+    def initializeProcess(chosenValue):
+        process["givenAction"] = chosenValue
+        currdata = loadData()['addProcessData']
+        currdata.append(process["givenAction"])
+        updateData("addProcessData",currdata)
+
+    def addProcessWindow(windowName,windowLayout,size_=(None,None)):
         reusableWindowLayout = createReusableLayout(windowLayout)
-        window = sg.Window(windowName, reusableWindowLayout , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True,icon=hotkeyIcon)
+        window = sg.Window(windowName, reusableWindowLayout , margins=(0,0),element_padding=(0,0),finalize=True, auto_size_text=True,keep_on_top=False,modal=True,icon=hotkeyIcon,size=size_,element_justification='c')
         window.make_modal()
         return window
     
@@ -228,23 +250,15 @@ def addHotKeyWindow():
             process["givenHotkey"] = str(values["hotkeyInput"]).lower()
             updateData("addProcessData",[process["givenHotkey"]])
 
-        elif (event == "complete2"):
-            chosenValue = None
-            if (values["openFile"]):
-                chosenValue = "opens"
-            elif (values["keyboardWrite"]):
-                chosenValue = "writes"
-            elif (values["keyboardRemap"]):
-                chosenValue = "remaps"
-            elif (values["playSound"]):
-                chosenValue = "plays"
-            else:
-                chosenValue = "???"
-            
-            process["givenAction"] = chosenValue
-            currdata = loadData()['addProcessData']
-            currdata.append(process["givenAction"])
-            updateData("addProcessData",currdata)
+        elif (event == "openFile"):
+            initializeProcess("opens")
+        elif (event == "keyboardWrite"):
+            initializeProcess("writes")
+        elif (event == "keyboardRemap"):
+            initializeProcess("remaps")
+        elif (event == "playSound"):
+            initializeProcess("plays")
+
 
         elif (event == "chooseFile"):
             print("[LOG] Trying to choose a file for new hotkey")
@@ -252,7 +266,7 @@ def addHotKeyWindow():
                 filePath = sg.popup_get_file('Choose your file', keep_on_top=True)
                 if not filePath:
                     print("[LOG] User did not choose a file.")
-                    pass
+                    return False
                 else:
                     print("[LOG] User chose file: " + str(filePath))
                     proceed = sg.popup_ok_cancel("You chose: " + str(filePath), keep_on_top=True)
@@ -264,10 +278,11 @@ def addHotKeyWindow():
                         currdata = loadData()['addProcessData']
                         currdata.append(process['givenParams'])
                         updateData("addProcessData",currdata)
-                        return
-            askPopUp()
+                        return True
+            v = askPopUp()
+            if not v: pass
             if (not loadData()['useGIF']):
-                sg.popup_auto_close("Hotkey added!",auto_close_duration=5)
+                addedHotkeyMessage()
             else:
                 import ntpath # we're importing it here because it's a situational module and we don't want to import stuff and possibly sacrifice miliseconds of performance
                 filepath = ntpath.basename(process['givenParams'])
@@ -303,7 +318,7 @@ def addHotKeyWindow():
                         return
             askPopUp()
             if (not loadData()['useGIF']):
-                sg.popup_auto_close("Hotkey Added!",auto_close_duration=5)
+                addedHotkeyMessage()
             else:
                 import ntpath # same reason as above
                 filepath = ntpath.basename(process['givenParams'])
@@ -323,7 +338,7 @@ def addHotKeyWindow():
             currdata.append(process["givenParams"])            
             updateData("addProcessData",currdata)
             if (not loadData()['useGIF']):
-                sg.popup_auto_close("Hotkey added!",auto_close_duration=5)
+                addedHotkeyMessage()
             else:
                 gifMessages = {
                     0: "Hotkey'd " + process["givenHotkey"],
@@ -338,8 +353,9 @@ def addHotKeyWindow():
             currdata = loadData()['addProcessData']
             currdata.append(process["givenParams"])
             updateData("addProcessData",currdata)
+            print(f"Hotkey Added!\n{keys[0]} key will now behave as {keys[1]}")
             if (not loadData()['useGIF']):
-                sg.popup_auto_close(f"Hotkey Added!\nYour {keys[0]} key will now behave as {keys[1]}")
+                addedHotkeyMessage()
             else:
                 gifMessages = {
                     0: "Remapped " + keys[0] + "!",
@@ -360,7 +376,7 @@ def addHotKeyWindow():
         elif (process["givenHotkey"] and not process["startWindow2"]):
             print('[LOG] User is switching to window 2 after selecting hotkey',process['givenHotkey'])
             window.close()
-            window = addProcessWindow("Selecting hotkey type",selectHotKeyTypeWindowLayout)
+            window = addProcessWindow("Selecting hotkey type",selectHotKeyTypeWindowLayout,size_=(590,600))
             process["startWindow2"] = True
             window["currHotkeyMessage"].update("Current hotkey: " + loadData()['addProcessData'][0])
         
@@ -382,7 +398,7 @@ def addHotKeyWindow():
                         return [f"No key provided for {'Key 1' if key == key1 else 'Key 2'}",False]
                     if not check_valid_hotkey(key):
                         return ["Invalid keys for " + key,False]
-                return [f'Remapping key(s) "{key1}" to key(s) "{key2}"',True]
+                return [f'Remapping key "{key1}" to key "{key2}"',True]
             key1,key2 = values['keyboardRemapKey1'],values['keyboardRemapKey2']
             validRemapCombo = validRemapKey(key1,key2)
             defaultTextColor = "black" if data['theme'] == "reddit" else "white"
@@ -461,7 +477,7 @@ def make_window(theme):
     layout = [ [sg.MenubarCustom(menu_def, key='-MENU-', font = defaultFont, tearoff=True, background_color='#18222d', text_color='white' )]]
                 
     menuOptions = [
-            sg.Tab('My hotkeys', my_hotkeys_layout),
+            sg.Tab('My Hotkeys', my_hotkeys_layout),
             sg.Tab('Hotkey Editor', hotkey_editor_layout),
             sg.Tab('Settings', settings_layout),
             ]
@@ -533,7 +549,7 @@ def main():
             print('[LOG] User reloaded all hotkeys')
             removeAllHotkeys()
             loadAllHotkeys()
-            sg.popup_auto_close("All hotkeys were reloaded!")
+            addedHotkeyMessage("All hotkeys were reloaded!")
 
         elif event == 'eraseHotkeys':
             print('[LOG] User is trying to erase all hotkeys')
