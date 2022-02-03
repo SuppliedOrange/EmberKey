@@ -52,7 +52,7 @@ There are plenty of reasons this command may fail. This can be because you don't
 <br>
 
 # Introduction
-EmberKey is a tool used to generate [hotkeys][1] that help with daily utility or simply for entertainment. Emberkey is a lightweight, fast and easy to use hotkey app built in Python. Create hotkeys with up to 4 unique functions. (*still needs a rewrite/confirmation)
+EmberKey is a tool used to generate [hotkeys][1] that help with daily utility or simply for entertainment. Emberkey is a lightweight, fast and easy to use hotkey app built in Python. Create hotkeys with up to 4 unique functions.
 
 [1]: <https://www.dictionary.com/browse/hotkey#:~:text=or%20hot%20key&text=an%20assigned%20key%20or%20sequence,Also%20called%20shortcut%2C%20keyboard%20shortcut%20.>  "hotkeys"
 
