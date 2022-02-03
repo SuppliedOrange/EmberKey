@@ -1,10 +1,6 @@
 # EmberKey
-# Writing the documentation
-I have marked places with *required rewrite for my team members to help me rewrite this documentation. Also, you may simply change any part of this documentation without asking if you feel it could be put in a better way.
-<br> <br>
-I have marked places with *doThis for me (doog) to rewrite
 
-Documentation starts now  <br> <br>
+<br>
 
 # Versions:
 **This app is only compatible with Python versions 3.6 to 3.9** <br>
@@ -56,7 +52,7 @@ There are plenty of reasons this command may fail. This can be because you don't
 <br>
 
 # Introduction
-EmberKey is a tool used to generate [hotkeys][1] that help with daily utility or simply for entertainment. *required rewrite
+EmberKey is a tool used to generate [hotkeys][1] that help with daily utility or simply for entertainment. Emberkey is a lightweight, fast and easy to use hotkey app built in Python. Create hotkeys with up to 4 unique functions. (*still needs a rewrite/confirmation)
 
 [1]: <https://www.dictionary.com/browse/hotkey#:~:text=or%20hot%20key&text=an%20assigned%20key%20or%20sequence,Also%20called%20shortcut%2C%20keyboard%20shortcut%20.>  "hotkeys"
 
@@ -85,7 +81,7 @@ The settings tab consists of the following options: <br>
 
 `Erase All Hotkeys` -> This will erase all the hotkeys.
 
-`GIF pop-ups` -> Use GIFs in place of pop-ups as success messages wherever possible *doThis add more of these.
+`GIF pop-ups` -> Use GIFs in place of pop-ups as success messages wherever possible.
 
 `Check GIF compatibility` -> You'll have to check if your Python version supports PIL or pillow and use the module accordingly. If you fail the compatibility test please do not attempt to enable GIFs.
 
@@ -139,7 +135,9 @@ The values recieved from the "addProcessData" key
 <br>
 
 # Credits:
-Made for a school assignment by `Dhruv`, `Johan` and `Bhumika` from Class 11 A. This project was made in pure Python. Maybe tell them about the godot thing too.  *required rewrite <br>
+Made for a school assignment by `Dhruv`, `Johan` and `Bhumika` from Class 11 A.
+This project was made in pure Python code and was built in just 4 days.
+This project was made alongside our main project, Axelia, a sci-fi RPG game built in Godot Engine.
 
 <br>
 
