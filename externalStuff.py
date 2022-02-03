@@ -100,7 +100,7 @@ def play_sound(sound_path):
         if (loadData()['warnNoSound']):
             playsound('./assets/audiofailure.mp3')
 
-def keyboardWrite(textToWrite='ApplicationName'):
+def keyboardWrite(textToWrite='EmberKey'):
     keyboard.write(textToWrite)
 
 def open_file(file_path):
