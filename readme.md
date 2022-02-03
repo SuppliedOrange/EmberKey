@@ -105,7 +105,7 @@ Moving to the Hotkey Editor tab, you'll see option "Add hotkey".
 
 `Typing a sentence/word:` If you wanted the hotkey to type a sentence, or rather send a series of keys in quick succession through your keyboard to emulate typing, you would be prompted to enter a sentence or word. This textbox has no limit. Upon pressing the hotkey, the letters will be pressed through your keyboard to write the sentence. Just make sure you have a text box selected to ensure nothing weird happens.
 
-`Remapping a key:` If you wanted to remap a key, let's say J + Alt to Windows/Command Key, you will need to enter "j+alt" in the first text-box and "windows" in the second text-box. Now pressing J + Alt will activate the Windows/Command Key. Easy remapping! Also note that some keys like "windows" will also work on Max as Command, Ubuntu as Superkey etc. Now I must admit that I may be cheating on the word "remap" because it does not actually prevent the initial key from being activated. I did not want to block the key as that would require me to use the winapi which can go very wrong in some cases.
+`Remapping a key:` If you wanted to remap a key, let's say J + Alt to Windows/Command Key, you will need to enter "j+alt" in the first text-box and "windows" in the second text-box. Now pressing J + Alt will activate the Windows/Command Key. Easy remapping! Also note that some keys like "windows" will also work on Mac as Command, Ubuntu as Superkey etc. Now I must admit that I may be cheating on the word "remap" because it does not actually prevent the initial key from being activated. I did not want to block the key as that would require me to use the winapi which can go very wrong in some cases.
 
 ## Removing Hotkeys
 
