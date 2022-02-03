@@ -7,7 +7,7 @@ from externalStuff import legalhotkeys, loadedHotkeys, openAndCloseWindow, loadD
 import webbrowser
 
 loadAllHotkeys()
-linkToDocs = 'https://github.com/SuppliedOrange/PythonHotkeyAppThing'
+linkToDocs = 'https://github.com/SuppliedOrange/EmberKey'
 hotkeyIcon = 'emberkeyLogo.ico'
 
 
