@@ -167,8 +167,7 @@ def addHotKeyWindow():
          "startWindow2" : False,
          "givenAction" : None,
          "startWindow3" : False,
-         "givenParams" : None,
-         "hotKeySecret" : None
+         "givenParams" : None
      }
 
     allKeys = ''
@@ -523,7 +522,7 @@ def main():
 
         elif event == 'Tools Used':
             print('[LOG] User viewed tools used.')
-            sg.popup('This app was built in 3 days using the following modules',
+            sg.popup('This app was built in 4 days using the following modules',
                      '|  PySimpleGUI [Main]',
                      '|  keyboard [Hotkeys]',
                      '|  pillow [GIFs]',
