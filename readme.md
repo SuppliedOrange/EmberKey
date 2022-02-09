@@ -14,10 +14,17 @@ I have downloaded Python 3.7.9 as an example here, you can download anything els
 
 ## Downloading Python 3.7.9 <br>
 • Firstly, download the [executable installer](https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe). Run it and enable the `Add to path` option before installing <br>
+
+<br>
+
 ![Enabling path option At the bottom of the screen](/assets/AddToPathImage.png)
 
 • After installing it, open up the project folder and open up command prompt in that directory by typing "cmd" in the address bar. Try typing `python3.7 -V` to see if the version number matches with *3.7.9*.
+
+<br>
+
 ![Typing "cmd" in address bar](/assets/AddressBarImage.png)
+
 ![Typing "python3.7 -V" in the cmd prompt](/assets/CheckPythonVersion.png)
 
 • You should use the `tutorialInstaller.bat` in Batch Files folder to install files. If you still keep running into errors don't worry, there's a fix. You need to manually input these lines:
